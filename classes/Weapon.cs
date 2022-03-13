@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using myTutoRPG;
+
 
 namespace myTutoRPG.classes
 {
@@ -59,10 +61,10 @@ namespace myTutoRPG.classes
             if (isCritic)
             {
                 int additionalDamages = (criticDamagePercent * basicDamages) / 100;
-                Console.WriteLine("Critic damages !! +" + additionalDamages + " points !");
+                ConsoleHelpers.Display("Critic damages !! +" + additionalDamages + " points !", 4);
                 finalDamages += additionalDamages;
             }
-            Console.WriteLine("Final damages : " + finalDamages);
+            ConsoleHelpers.Display("Final damages : " + finalDamages, 2);
             return finalDamages;
         }
 

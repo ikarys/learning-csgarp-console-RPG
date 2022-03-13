@@ -6,6 +6,7 @@ using System.Text;
 
 using myTutoRPG.classes.characters.player;
 using myTutoRPG.classes;
+using myTutoRPG;
 
 class Test
 {
@@ -13,10 +14,11 @@ class Test
     {
 
         PlayerCharacter p = new PlayerCharacter("Bob", _mana: 200);
-        Console.WriteLine("Welcome in our virtual RPG " + p.name + " !");
-        Console.WriteLine("You will start with " + p.Life + " points of life and " + p.Mana +" points of mana.");
-        Console.WriteLine("Take care, if your points of life reach zero or less, you're DEAD !!");
+        ConsoleHelpers.Display("Welcome in our virtual RPG " + p.name + " !");
+        ConsoleHelpers.Display("You will start with " + p.Life + " points of life and " + p.Mana +" points of mana.");
+        ConsoleHelpers.Display("Take care, if your points of life reach zero or less, you're DEAD !!");
 
+        Console.WriteLine("----------------------------------------------------------------------------");
         Weapon w = new Weapon(
             "Basic sword", 
             _damages_min: 1, 
@@ -25,6 +27,22 @@ class Test
             _criticRate: 0.15,
             _criticDamagePercent: 5
             );
-        Console.WriteLine(w.Name + " makes " + w.CalculDamages() + " pts of damages !");
+
+        p.SetWeapon(w);
+        ConsoleHelpers.Display("=> You get new weapon: <" + p.GetWeapon() + ">", 11);
+        p.TakeDamages(25);
+        p.GetLife();
+        p.Heal(10);
+        p.GetLife();
+
+        Item i1 = new Item("Fish", "Consumable");
+        Item i2 = new Item("Meat", "Consumable");
+        Item i3 = new Item("Potion", "Consumable");
+        Item i4 = new Item("Boom", "Consumable");
+        p.Inventory.AddItemToInventory(i1);
+        p.Inventory.AddItemToInventory(i2);
+/*        p.Inventory.AddItemToInventory(i3);
+        p.Inventory.AddItemToInventory(i4);*/
+        p.Inventory.OpenInventory();
     }
 }
